@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+    php:
+        volumes:
+            - appcode-native-osx-sync:/app:nocopy
+
+volumes:
+    appcode-native-osx-sync:
+        external: true
+

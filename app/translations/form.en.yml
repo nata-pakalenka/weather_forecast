@@ -1,0 +1,4 @@
+form:
+    country: Country
+    city: City
+    submit: Submit

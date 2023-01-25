@@ -1,0 +1,46 @@
+httplug:
+    plugins:
+        retry:
+            retry: 1
+
+    discovery:
+        client: 'auto'
+
+    clients:
+        app:
+            http_methods_client: true
+            plugins:
+                - 'httplug.plugin.content_length'
+                - 'httplug.plugin.redirect'
+        open_weather:
+            factory: 'httplug.factory.guzzle6'
+            plugins:
+                -   authentication:
+                        open_weather_query_param:
+                            type: 'query_param'
+                            params:
+                                appid: '%env(resolve:OPEN_WEATHER_API_KEY)%'
+                -   base_uri:
+                        uri: '%env(resolve:OPEN_WEATHER_API_BASE_URI)%'
+            config:
+                timeout: 3
+        weather_bit:
+            factory: 'httplug.factory.guzzle6'
+            plugins:
+                -   authentication:
+                        open_weather_query_param:
+                            type: 'query_param'
+                            params:
+                                key: '%env(resolve:WEATHER_BIT_API_KEY)%'
+                -   base_uri:
+                        uri: '%env(resolve:WEATHER_BIT_API_BASE_URI)%'
+        google_geocoder:
+            factory: 'httplug.factory.guzzle6'
+            plugins:
+                -   authentication:
+                        open_weather_query_param:
+                            type: 'query_param'
+                            params:
+                                key: '%env(resolve:GOOGLE_GEOCODER_API_KEY)%'
+                -   base_uri:
+                        uri: '%env(resolve:GOOGLE_GEOCODER_API_BASE_URI)%'
